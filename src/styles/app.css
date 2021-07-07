@@ -1,0 +1,52 @@
+.App{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    position: relative;
+    z-index: 0;
+    height: 1000px;
+}
+.top-design{
+    background-image:url('../img/bg-mobile-dark.jpg');
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:0px;
+    z-index:-1;
+}
+.todo{
+    width: 600px;
+}
+.light{
+    background:hsl(233, 11%, 84%);
+}
+.dark{
+    background: hsl(237, 14%, 26%);
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    height: 20px;
+    cursor: pointer;
+}
+.modeChng{
+    cursor:pointer;
+}
+.input input{
+    background-color: rgb(63, 62, 62);
+    height: 50px;
+    width:100%;
+    border-radius:10px;
+    font-size:40px;
+    border: none;
+    outline: none;
+}
+.ind-todo{
+    border-bottom: 1px solid rgb(71, 71, 71);
+    height: 20px;
+}
+.todo-cont{
+    border-radius: 10px;
+}

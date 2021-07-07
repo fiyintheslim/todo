@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import "./styles/app.css";
+import Top from "./components/top";
+import Enter from "./components/enter"
+import Todo from "./components/todo";
 
-function App() {
+function App () {
+  const [lightMode, setMode]=useState(true);
+  const [todo, addTodo]=useState<string[]>([]);
+  console.log(lightMode ? "light":"dark")
+
+  const modeChng=()=>{
+    console.log("clicked")
+    setMode(!lightMode);
+  }
+
+  const getTodo=(e:any, curr:string, comp:React.Dispatch<React.SetStateAction<string>>)=>{
+    if(e.which ===13){
+      console.log(curr)
+        addTodo([...todo, curr]);
+        comp("");
+        console.log(todo)
+    }
+}
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${lightMode ? "light":"dark"}`}>
+      <div className="top-design"></div>
+      <div className="todo">
+        <Top lightMode={lightMode} modeChng={modeChng} />
+        <Enter getTodo={getTodo} />
+        <div className="todo-cont">
+          {todo.map((ind)=><Todo content={ind} />)
+          }
+        </div>
+        
+      </div>
+      
     </div>
   );
 }
