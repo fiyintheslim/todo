@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Cont from "../components/container"
 import dark from "../images/bg-mobile-dark.jpg";
 import light from "../images/bg-mobile-light.jpg";
+import IndItem from "../components/item";
 
 export const Container=styled(Cont)`
 display:flex;
@@ -42,4 +43,12 @@ color: white;
 export const Switch=styled.img`
 height:20px;
 width: 20px;
+`
+
+export const Item=styled(IndItem)`
+background: ${props=>props.isDark?"hsl(235, 24%, 19%)":"hsl(236, 33%, 92%)"};
+
+&:hover{
+    background: hsl(236, 33%, 92%);
+}
 `
