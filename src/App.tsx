@@ -2,19 +2,21 @@ import React, {useState} from "react";
 import GlobalStyle from "./styles/global";
 import Mode from "./context/mode";
 import {Container, Item} from "./styles"
+import {v4 as uuid} from "uuid"
 
 import Head from "./components/head"
 
 function App () {
   const [isDark, setDark]=useState(true);
-  const [todo, addTodo]=useState(["say hello to the new neighbours"]);
+  const [todo, addTodo]=useState([{todo:"say hello to the new neighbours", id:uuid()}]);
 
   function getItem(e:any){
-    console.log(e.which)
+    
     if(e.which === 13 && e.target.value !==""){
-      addTodo([...todo, e.target.value])
+      addTodo([...todo, {todo:e.target.value, id:uuid()}])
       e.target.value="";
-      console.log(todo)
+      console.log(uuid())
+      
     }
   }
   return(
@@ -26,15 +28,15 @@ function App () {
       <div className="not-bg">
         <Head />
         <input type="text" onKeyUp={(e)=>getItem(e)}/>
-        <div className="todos">
+        <ul className="todos">
           {todo.map(i=>{
             return(
               <Item isDark={isDark}>
-                <span>{i}</span>
+                <div key={i.id}>{i.todo}</div>
               </Item>
             )
           })}
-        </div>
+        </ul>
         
       </div>
         

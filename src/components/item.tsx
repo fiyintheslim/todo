@@ -6,9 +6,9 @@ isDark?:boolean
 const IndItem:React.FC<Props>=(props)=>{
 
     return(
-        <div className={props.className}>
+        <li className={props.className}>
             {props.children}
-        </div>
+        </li>
     )
 }
 export default IndItem

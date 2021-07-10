@@ -11,6 +11,10 @@ background:${props=>props.isDark?'hsl(235, 21%, 11%)':'hsl(0, 0%, 98%)'};
 height:1000px;
 width:100%;
 position:relative;
+ul{
+    list-style:none;
+    padding-inline-start:0px;
+}
 div.background{
     background-image:url(${props=>props.isDark ? dark : light}) ;
     height: 200px;
@@ -21,6 +25,10 @@ div.background{
 .not-bg{
     position:relative;
     bottom: 150px;
+}
+input{
+    height: 30px;
+    border-radius: 10px;
 }
 `
 export const BackImg=styled.div`
@@ -47,6 +55,12 @@ width: 20px;
 
 export const Item=styled(IndItem)`
 background: ${props=>props.isDark?"hsl(235, 24%, 19%)":"hsl(236, 33%, 92%)"};
+height: 40px;
+display: flex;
+align-items: center;
+padding: 5px;
+margin-bottom: gray 0.5px solid;
+
 
 &:hover{
     background: hsl(236, 33%, 92%);
