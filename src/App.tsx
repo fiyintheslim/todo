@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import GlobalStyle from "./styles/global";
 import Mode from "./context/mode";
-import {Container, Item} from "./styles"
-import {v4 as uuid} from "uuid"
+import {Container, Item} from "./styles";
+import {v4 as uuid} from "uuid";
+
+import cross from "./images/icon-cross.svg";
 
 import Head from "./components/head"
 
@@ -27,15 +29,17 @@ function App () {
       <div className="background"></div>
       <div className="not-bg">
         <Head />
-        <input type="text" onKeyUp={(e)=>getItem(e)}/>
+        <input type="text" onKeyUp={(e)=>getItem(e)} placeholder="Create a new todo" />
         <ul className="todos">
           {todo.map(i=>{
             return(
               <Item isDark={isDark}>
                 <div key={i.id}>{i.todo}</div>
+                <img alt="cross" src={cross} />
               </Item>
             )
           })}
+          <li className="last"><span>{todo.length} {todo.length<=1 ? "item":"items"} left</span><span></span></li>
         </ul>
         
       </div>
