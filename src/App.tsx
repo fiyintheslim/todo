@@ -10,21 +10,33 @@ import Head from "./components/head"
 
 function App () {
   const [isDark, setDark]=useState(true);
-  const [todo, addTodo]=useState([{todo:"say hello to the new neighbours", id:uuid()}]);
+  const [todo, addTodo]=useState([{id:uuid(), todo:"say hello to the new neighbours", completed:false}]);
 
   function getItem(e:any){
     
     if(e.which === 13 && e.target.value !==""){
-      addTodo([...todo, {todo:e.target.value, id:uuid()}])
+      addTodo([...todo, {id:uuid(), todo:e.target.value, completed:false}])
       e.target.value="";
       console.log(uuid())
       
     }
   }
+  function clear(){
+    if(todo.length>0){
+      let rem=todo.filter(i=>{
+        return i.completed === false
+      })
+      addTodo(rem)
+    }
+    
+  }
+  function x (e:any){
+    console.log(e.target.parent)
+  }
   return(
     <>
     <GlobalStyle />
-    <Mode.Provider value={{dark:isDark, setDark}}>
+    <Mode.Provider value={{dark:isDark, setDark, todo, addTodo}}>
       <Container isDark={isDark}>
       <div className="background"></div>
       <div className="not-bg">
@@ -33,13 +45,13 @@ function App () {
         <ul className="todos">
           {todo.map(i=>{
             return(
-              <Item isDark={isDark}>
-                <div key={i.id}>{i.todo}</div>
-                <img alt="cross" src={cross} />
+              <Item isDark={isDark} id={i.id} comp={i.completed}>
+                <div >{i.todo}</div>
+                <img alt="cross" src={cross} onClick={(e)=>x(e)} />
               </Item>
             )
           })}
-          <li className="last"><span>{todo.length} {todo.length<=1 ? "item":"items"} left</span><span></span></li>
+          <li className="last"><span id="remain">{todo.length} {todo.length<=1 ? "item":"items"} left</span><span id="clear" onClick={()=>clear()} >clear completed</span></li>
         </ul>
         
       </div>

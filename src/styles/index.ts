@@ -10,6 +10,7 @@ flex-direction:column;
 background:${props=>props.isDark?'hsl(235, 21%, 11%)':'hsl(0, 0%, 98%)'};
 height:1000px;
 position:relative;
+transition: all 1s ease-out;
 .todos{
     
     
@@ -53,6 +54,15 @@ input{
     background:${props=>props.isDark?"hsl(235, 24%, 19%)":"hsl(236, 33%, 92%)"};
     padding: 4px 20px;
     color:hsl(234, 11%, 52%);
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    &:active{
+        color:hsl(220, 98%, 61%);
+    }
+    span{
+        cursor: pointer;
+    }
 }
 `
 export const BackImg=styled.div`
@@ -86,10 +96,11 @@ align-items: center;
 padding: 3px 15px;
 border-bottom: hsl(234, 11%, 52%) 1px solid;
 justify-content: space-between;
-
+text-decoration:${props=>props.comp ? "line-through":"none"};
+color:${props=>props.comp ? "gray":""};
 img{
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     padding: 5px;
     &:hover{
         width: 13px;
